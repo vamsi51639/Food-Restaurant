@@ -1,0 +1,48 @@
+<app-header></app-header>
+<div class="container">
+    <form *ngIf="showform" #orderForm ="ngForm" (ngSubmit)="submitForm(orderForm)">
+        <h1>Order Now</h1>
+        <!-- <label for="customerid">Customer Id:</label>
+        <input type="number" id="customerid" name="customerid" [(ngModel)]="customerid" ngModel name="uname" #uname="ngModel" required> -->
+        <button type="submit" (click)="submitForm(orderForm)">order</button>
+        <!-- <p *ngIf="uname.touched&&uname.errors?.['required']" style="color:red">*CustomerId required</p> -->
+        <button (click)="yourOrders()">Your Orders</button>
+        <p>{{s}}</p>
+    </form>
+</div>
+
+<div *ngIf="!showform" class="container food-table">
+    <div class="headers">
+        <h2 class="table-title">My Orders</h2>
+    </div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Order_Id</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Tracking_Id</th>
+            <th>OrderDateAndTime</th>
+            <th>Order_Status</th>   
+        </tr>
+    </thead>
+    <tbody class="text-center">
+            <tr *ngFor="let order of orders">
+                <td>{{order.order_id}}</td>
+                 <td>{{order.quantity}}</td>
+                 <td>{{order.totalprice}}</td>
+                <td>{{order.tracking_id}}</td>
+                <td>{{order.orderdateandtime}}</td>
+                <td>{{order.order_status}}</td>
+                <button (click)="viewItems(order.order_id)">OrderItem(s)</button>
+                <button (click)="cancelOrder(order.order_id)">CancelOrder</button>
+                <!-- <button class="delete" (click)="deleteFood(food.cart_id)">Delete</button>
+                <button (click)="inc(food)" class="add">+</button> -->
+        </tr>
+    </tbody>
+</table>
+
+<div class="action">
+<button class="btn btn-primary save" (click)="toCart()">Add More</button>
+</div>
+</div>

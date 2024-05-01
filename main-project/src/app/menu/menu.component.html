@@ -1,0 +1,28 @@
+<app-header></app-header>
+<div *ngIf="foods" class="container food-table">
+    <div class="headers">
+        <h2 class="table-title">Menu</h2>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Food_Id</th>
+                <th>Food_Name</th>
+                <th>Quantity_Available</th>
+                <th>Unit_price</th>
+                
+            </tr>
+        </thead>
+        <tbody class="text-center">
+                <tr *ngFor="let food of foods">
+                    <td>{{food.food_id}}</td>
+                    <td>{{food.food_name}}</td>
+                    <td>{{food.quantity}}</td>
+                    <td>{{food.price}}</td>
+                    
+                     </tr>
+        </tbody>
+    </table>
+  
+</div>
+
